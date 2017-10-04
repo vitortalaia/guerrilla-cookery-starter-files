@@ -18,6 +18,7 @@ class App extends Component {
 
     this.fetchRecipes = this.fetchRecipes.bind(this)
     this.onSearchRecipes = this.onSearchRecipes.bind(this)
+    this.onFetchRecipesSuccess = this.onFetchRecipesSuccess.bind(this)
   }
 
 
@@ -27,14 +28,14 @@ class App extends Component {
     const params = { i: ingredientList }
 
     API.get('/', { params })
-      .then(this.onFetchRecipesSucess)
+      .then(this.onFetchRecipesSuccess)
       .catch(this.onFetchRecipesFailure)
       .then(() => {
         this.setState({ isFetching: false })
       })
   }
 
-  onFetchRecipesSucess (response) {
+  onFetchRecipesSuccess (response) {
     this.setState({
       recipes: response.data.results
     })
@@ -60,6 +61,8 @@ class App extends Component {
         <Header onSearchRecipes={this.onSearchRecipes} />
 
         { this.state.isFetching && <Loader /> }
+
+        {/* { this.setState({recipes: [ { }])} */}
 
         {
           !this.state.isFetching &&

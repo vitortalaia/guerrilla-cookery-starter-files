@@ -1,3 +1,4 @@
+import React from 'react'
 import Recipe from './recipe'
 
 import '../styles/components/recipes-list.css'
